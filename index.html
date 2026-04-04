@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>블루아카이브 트친소표 생성기</title>
+  <!-- Open Graph (Discord, 카카오톡 등) -->
+  <meta property="og:title" content="블루아카이브 트친소표 생성기">
+  <meta property="og:description" content="블루아카이브 트친소표를 간편하게 만들어보세요.">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="블루아카이브 트친소표 생성기">
+  <meta name="twitter:description" content="블루아카이브 트친소표를 간편하게 만들어보세요.">
+  <meta name="twitter:image" content="logo.png">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- 프로필 평행사변형 (둥근 모서리) 클립패스 -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <clipPath id="clip-profile" clipPathUnits="objectBoundingBox">
+        <path d="
+          M 0.16,0
+          L 0.96,0
+          Q 1,0 0.995,0.055
+          L 0.885,0.945
+          Q 0.88,1 0.84,1
+          L 0.04,1
+          Q 0,1 0.005,0.945
+          L 0.115,0.055
+          Q 0.12,0 0.16,0
+          Z
+        "/>
+      </clipPath>
+    </defs>
+  </svg>
+</head>
+<body>
+  <div id="app">
+    <!-- 모바일 최상단 제목 (데스크톱에서는 숨김) -->
+    <h1 class="form-title mobile-title"><img src="logo.png" alt="블루아카이브 트친소표 생성기" class="title-logo" oncontextmenu="return false"></h1>
+    <!-- 폼 패널 -->
+    <div id="form-panel">
+      <h1 class="form-title desktop-title"><img src="logo.png" alt="블루아카이브 트친소표 생성기" class="title-logo" oncontextmenu="return false"></h1>
+
+      <!-- 프로필 섹션 -->
+      <details class="form-section" open>
+        <summary>프로필</summary>
+        <div class="form-group">
+          <label>이름</label>
+          <div class="input-row">
+            <input type="text" id="input-name" placeholder="이름 입력" maxlength="12">
+            <span class="suffix">선생님</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>나이</label>
+          <div class="toggle-group" data-field="age">
+            <button class="toggle-btn" data-value="성인">성인</button>
+            <button class="toggle-btn" data-value="미성년자">미성년자</button>
+            <button class="toggle-btn" data-value="비공개">비공개</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>성별</label>
+          <div class="toggle-group" data-field="gender">
+            <button class="toggle-btn" data-value="남성">남성</button>
+            <button class="toggle-btn" data-value="여성">여성</button>
+            <button class="toggle-btn" data-value="비공개">비공개</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>서버</label>
+          <div class="server-group">
+            <div class="server-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="server-kr"> KR
+              </label>
+              <input type="text" id="input-kr-code" placeholder="친구코드" disabled class="friend-code" maxlength="8">
+            </div>
+            <div class="server-row">
+              <label class="checkbox-label">
+                <input type="checkbox" id="server-jp"> JP
+              </label>
+              <input type="text" id="input-jp-code" placeholder="친구코드" disabled class="friend-code" maxlength="8">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>프로필 사진</label>
+          <button class="btn-upload" id="profile-upload-area">사진 업로드</button>
+          <input type="file" id="profile-file" accept="image/*" hidden>
+        </div>
+      </details>
+
+      <!-- 주 트위터 활동 -->
+      <details class="form-section" open>
+        <summary>주 트위터 활동</summary>
+        <div class="checkbox-grid">
+          <label class="checkbox-label"><input type="checkbox" data-activity="RT 위주"> RT 위주</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="마음 위주"> 마음 위주</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="멘션 위주"> 멘션 위주</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="게임 대화"> 게임 대화</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="일상트"> 일상트</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="구독"> 구독</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="그림"> 그림</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="글"> 글</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="영상"> 영상</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="코스프레"> 코스프레</label>
+          <label class="checkbox-label"><input type="checkbox" data-activity="번역"> 번역</label>
+        </div>
+      </details>
+
+      <!-- 하고 싶은 말 -->
+      <details class="form-section" open>
+        <summary>하고 싶은 말</summary>
+        <textarea id="input-message" rows="3" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 아래 흔적들에 찾아가요 -->
+      <details class="form-section" open>
+        <summary>아래 흔적들에 찾아가요</summary>
+        <div class="form-group">
+          <label>반응</label>
+          <div class="toggle-group multi" data-field="traces">
+            <button class="toggle-btn" data-value="RT">RT</button>
+            <button class="toggle-btn" data-value="마음">마음</button>
+            <button class="toggle-btn" data-value="멘션">멘션</button>
+            <button class="toggle-btn" data-value="선팔">선팔</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>방식</label>
+          <div class="toggle-group" data-field="traceMethod">
+            <button class="toggle-btn" data-value="조건 없이">조건 없이</button>
+            <button class="toggle-btn" data-value="가려서">가려서</button>
+          </div>
+        </div>
+      </details>
+
+      <!-- FUB / 스포일러 / 18+ -->
+      <details class="form-section" open>
+        <summary>계정 안내</summary>
+        <div class="checkbox-grid">
+          <label class="checkbox-label"><input type="checkbox" id="chk-fub"> FUB Free</label>
+          <label class="checkbox-label"><input type="checkbox" id="chk-spoiler"> 스포일러 내용 있음</label>
+          <label class="checkbox-label"><input type="checkbox" id="chk-adult"> 18+ 소재 있음</label>
+        </div>
+        <div class="form-group" style="margin-top:8px">
+          <label>이별은</label>
+          <div class="checkbox-grid">
+            <label class="checkbox-label"><input type="checkbox" data-farewell="언팔"> 언팔</label>
+            <label class="checkbox-label"><input type="checkbox" data-farewell="블언블"> 블언블</label>
+            <label class="checkbox-label"><input type="checkbox" data-farewell="블락"> 블락</label>
+          </div>
+        </div>
+      </details>
+
+      <!-- 선호 캐릭터 -->
+      <details class="form-section" open>
+        <summary>선호 캐릭터</summary>
+        <div id="selected-characters" class="selected-characters">
+          <button class="add-character-btn" id="btn-add-character">+ 캐릭터 추가</button>
+        </div>
+      </details>
+
+      <!-- 선호 커플링 -->
+      <details class="form-section" open>
+        <summary>선호 커플링</summary>
+        <textarea id="input-coupling" rows="2" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 선호 학원 -->
+      <details class="form-section" open>
+        <summary>선호 학원</summary>
+        <div id="school-selector" class="school-selector"></div>
+      </details>
+
+      <!-- 선호 동아리 -->
+      <details class="form-section" open>
+        <summary>선호 동아리</summary>
+        <textarea id="input-club" rows="2" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 접속 시간대 -->
+      <details class="form-section" open>
+        <summary>접속 시간대</summary>
+        <textarea id="input-time" rows="2" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 타 장르 -->
+      <details class="form-section" open>
+        <summary>타 장르</summary>
+        <label class="checkbox-label"><input type="checkbox" id="chk-other-genre"> 언급 있음</label>
+        <textarea id="input-other-genre" rows="2" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 지뢰 -->
+      <details class="form-section" open>
+        <summary>지뢰</summary>
+        <textarea id="input-mine" rows="2" placeholder="자유롭게 작성하세요"></textarea>
+      </details>
+
+      <!-- 버튼 -->
+      <div class="form-actions">
+        <button id="btn-export" class="btn-primary">PNG 내보내기</button>
+        <button id="btn-reset" class="btn-secondary">초기화</button>
+      </div>
+    </div>
+
+    <!-- 미리보기 패널 -->
+    <div id="preview-panel">
+      <div id="preview-toggle-bar">
+        <button id="btn-toggle-preview" class="btn-preview-toggle">미리보기</button>
+      </div>
+      <div id="card-viewport">
+        <div id="card-container">
+          <img src="template.png" class="template-bg" alt="template">
+          <!-- 프로필 영역 -->
+          <div class="card-overlay" id="ov-profile-photo"></div>
+          <div class="card-overlay card-text" id="ov-name"></div>
+          <div class="card-overlay" id="ov-age">
+            <span class="opt-dimmer hidden" data-opt="성인"></span>
+            <span class="opt-dimmer hidden" data-opt="미성년자"></span>
+            <span class="opt-dimmer hidden" data-opt="비공개"></span>
+          </div>
+          <div class="card-overlay" id="ov-gender">
+            <span class="opt-dimmer hidden" data-opt="남성"></span>
+            <span class="opt-dimmer hidden" data-opt="여성"></span>
+            <span class="opt-dimmer hidden" data-opt="비공개"></span>
+          </div>
+          <div class="card-overlay" id="ov-server-kr-check"></div>
+          <div class="card-overlay" id="ov-server-kr-dim"></div>
+          <div class="card-overlay card-text" id="ov-server-kr-code"></div>
+          <div class="card-overlay" id="ov-server-jp-check"></div>
+          <div class="card-overlay" id="ov-server-jp-dim"></div>
+          <div class="card-overlay card-text" id="ov-server-jp-code"></div>
+
+          <!-- 트위터 활동 체크박스 -->
+          <div class="card-overlay" id="ov-activity-0"></div>
+          <div class="card-overlay" id="ov-activity-1"></div>
+          <div class="card-overlay" id="ov-activity-2"></div>
+          <div class="card-overlay" id="ov-activity-3"></div>
+          <div class="card-overlay" id="ov-activity-4"></div>
+          <div class="card-overlay" id="ov-activity-5"></div>
+          <div class="card-overlay" id="ov-activity-6"></div>
+          <div class="card-overlay" id="ov-activity-7"></div>
+          <div class="card-overlay" id="ov-activity-8"></div>
+          <div class="card-overlay" id="ov-activity-9"></div>
+          <div class="card-overlay" id="ov-activity-10"></div>
+
+          <!-- 하고 싶은 말 -->
+          <div class="card-overlay card-text" id="ov-message"></div>
+
+          <!-- 흔적 토글 -->
+          <div class="card-overlay" id="ov-trace-rt"><span class="dimmer"></span></div>
+          <div class="card-overlay" id="ov-trace-heart"><span class="dimmer"></span></div>
+          <div class="card-overlay" id="ov-trace-mention"><span class="dimmer"></span></div>
+          <div class="card-overlay" id="ov-trace-follow"><span class="dimmer"></span></div>
+          <div class="card-overlay" id="ov-trace-method">
+            <span class="opt-dimmer hidden" data-opt="조건 없이"></span>
+            <span class="opt-dimmer hidden" data-opt="가려서"></span>
+          </div>
+
+          <!-- FUB / 스포 / 18+ -->
+          <div class="card-overlay" id="ov-fub"></div>
+          <div class="card-overlay" id="ov-spoiler"></div>
+          <div class="card-overlay" id="ov-adult"></div>
+          <div class="card-overlay" id="ov-farewell-unfollow"></div>
+          <div class="card-overlay" id="ov-farewell-blockunblock"></div>
+          <div class="card-overlay" id="ov-farewell-block"></div>
+
+          <!-- 선호 캐릭터 -->
+          <div class="card-overlay" id="ov-characters"></div>
+
+          <!-- 선호 커플링 -->
+          <div class="card-overlay card-text" id="ov-coupling"></div>
+
+          <!-- 선호 학원 -->
+          <div class="card-overlay" id="ov-schools"></div>
+
+          <!-- 선호 동아리 -->
+          <div class="card-overlay card-text" id="ov-club"></div>
+
+          <!-- 접속 시간대 -->
+          <div class="card-overlay card-text" id="ov-time"></div>
+
+          <!-- 타 장르 -->
+          <div class="card-overlay" id="ov-other-genre-check"></div>
+          <div class="card-overlay card-text" id="ov-other-genre"></div>
+
+          <!-- 지뢰 -->
+          <div class="card-overlay card-text" id="ov-mine"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 캐릭터 선택 모달 -->
+  <div id="character-modal" class="modal-overlay" hidden>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>캐릭터 선택</h2>
+        <input type="text" id="character-search" placeholder="이름 검색 (한국어/영문)">
+        <button class="modal-close" id="btn-close-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="character-grid"></div>
+      <div class="modal-footer">
+        <span id="selected-count">0개 선택됨</span>
+        <button class="btn-primary" id="btn-confirm-characters">확인</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/character-selector.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,887 @@
+/* Custom Font */
+@font-face {
+  font-family: 'GyeonggiTitle';
+  src: url('../fonts/경기천년제목_Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GyeonggiTitle';
+  src: url('../fonts/경기천년제목_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #e8eef5;
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* App Layout */
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Form Panel */
+#form-panel {
+  width: 400px;
+  height: 100vh;
+  overflow-y: auto;
+  background: #fff;
+  border-right: 1px solid #dde3ec;
+  padding: 20px;
+  z-index: 10;
+}
+
+.form-title {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.title-logo {
+  height: 120px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mobile-title {
+  display: none;
+}
+
+/* Form Sections */
+.form-section {
+  margin-bottom: 12px;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.form-section summary {
+  padding: 10px 14px;
+  background: #f0f4fa;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  color: #4a7bc5;
+}
+
+.form-section summary:hover {
+  background: #e4ecf7;
+}
+
+.form-section > *:not(summary) {
+  padding: 10px 14px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group > label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #555;
+}
+
+/* Inputs */
+input[type="text"], textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccd5e0;
+  border-radius: 6px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, textarea:focus {
+  border-color: #4a7bc5;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.input-row input {
+  flex: 1;
+}
+
+.suffix {
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Toggle Buttons */
+.toggle-group {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.toggle-btn {
+  padding: 6px 14px;
+  border: 1px solid #b0c4de;
+  border-radius: 20px;
+  background: #f5f8fc;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #666;
+}
+
+.toggle-btn:hover {
+  background: #e4ecf7;
+}
+
+.toggle-btn.active {
+  background: #4a7bc5;
+  color: #fff;
+  border-color: #4a7bc5;
+}
+
+/* Server Group */
+.server-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.server-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.friend-code {
+  width: 160px !important;
+  flex: unset !important;
+}
+
+.friend-code:disabled {
+  background: #f0f0f0;
+  opacity: 0.5;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+
+/* Profile Upload */
+.btn-upload {
+  padding: 8px 16px;
+  background: #f0f4fa;
+  border: 1px solid #b0c4de;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #555;
+}
+
+.btn-upload:hover {
+  background: #e0eaf5;
+}
+
+.btn-upload.has-file {
+  background: #e8f5e9;
+  border-color: #81c784;
+  color: #2e7d32;
+}
+
+/* Selected Characters */
+.selected-characters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.selected-char-item {
+  position: relative;
+  width: 50px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ccd5e0;
+}
+
+.selected-char-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.selected-char-item .remove-char {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.add-character-btn {
+  padding: 8px 16px;
+  border: 1px dashed #b0c4de;
+  border-radius: 6px;
+  background: #f5f8fc;
+  cursor: pointer;
+  font-size: 13px;
+  color: #4a7bc5;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.add-character-btn:hover {
+  background: #e4ecf7;
+}
+
+/* School Selector */
+.school-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.school-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.35;
+  transition: all 0.2s;
+  background: #f0f4fa;
+  padding: 4px;
+}
+
+.school-item:hover {
+  opacity: 0.7;
+}
+
+.school-item.active {
+  opacity: 1;
+  border-color: #4a7bc5;
+}
+
+.school-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  padding-bottom: 20px;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 12px;
+  background: #4a7bc5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #3a6ab5;
+}
+
+.btn-secondary {
+  padding: 12px 20px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn-secondary:hover {
+  background: #f5f5f5;
+}
+
+/* Preview Panel */
+#preview-panel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+#preview-toggle-bar {
+  display: none;
+}
+
+#card-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+#card-container {
+  width: 1920px;
+  height: 1080px;
+  position: relative;
+  transform-origin: top left;
+  font-family: 'GyeonggiTitle', 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+#card-container > img.template-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Card Overlay Elements */
+.card-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-text {
+  color: #2587ff;
+  font-size: 22px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow: hidden;
+}
+
+/* ============================================
+   Overlay positions (1920×1080 coordinate system)
+   디버그: .card-overlay에 outline 추가로 위치 확인 가능
+   ============================================ */
+
+/* 디버그 모드 - 위치 확인 후 이 줄을 삭제하세요 */
+.card-overlay.debug { outline: 2px solid rgba(255, 0, 0, 0.5); background: rgba(255, 0, 0, 0.08); }
+
+/* --- 프로필 영역 --- */
+#ov-profile-photo {
+  left: 82px; top: 283px;
+  width: 240px; height: 184px;
+  clip-path: url(#clip-profile);
+  overflow: hidden;
+  position: absolute;
+}
+
+#ov-profile-photo img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#ov-name {
+  left: 326px; top: 270px;
+  width: 190px; height: 42px;
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ov-age {
+  left: 394px; top: 338px;
+  width: 252px; height: 30px;
+  display: flex;
+}
+
+#ov-gender {
+  left: 394px; top: 378px;
+  width: 215px; height: 30px;
+  display: flex;
+}
+
+/* 옵션 디머: 선택하지 않은 항목을 배경색으로 덮어 안보이게 */
+.opt-dimmer {
+  position: absolute;
+  background: #f2fafd;
+  transition: opacity 0.2s;
+  top: 0;
+  height: 100%;
+}
+
+.opt-dimmer.hidden {
+  opacity: 0;
+}
+
+/* 나이: 성인 / 미성년자 / 비공개 — 부모 내 상대좌표 */
+#ov-age .opt-dimmer { background: rgba(215, 237, 251, 0.75); }
+#ov-age .opt-dimmer[data-opt="성인"]    { left: 0;     width: 52px; }
+#ov-age .opt-dimmer[data-opt="미성년자"] { left: 70px;  width: 94px; }
+#ov-age .opt-dimmer[data-opt="비공개"]   { left: 182px; width: 72px; }
+
+/* 성별: 남성 / 여성 / 비공개 — 부모 내 상대좌표 */
+#ov-gender .opt-dimmer { background: rgba(215, 237, 251, 0.75); }
+#ov-gender .opt-dimmer[data-opt="남성"]  { left: 0;    width: 52px; }
+#ov-gender .opt-dimmer[data-opt="여성"]  { left: 70px; width: 52px; }
+#ov-gender .opt-dimmer[data-opt="비공개"] { left: 140px; width: 72px; }
+
+/* 조건: 조건 없이 / 가려서 — 부모 내 상대좌표 */
+#ov-trace-method .opt-dimmer { background: rgba(242, 250, 253, 0.75); }
+#ov-trace-method .opt-dimmer[data-opt="조건 없이"] { left: 0;     width: 100px; }
+#ov-trace-method .opt-dimmer[data-opt="가려서"]    { left: 120px; width: 80px; }
+
+#ov-server-kr-check { left: 365px; top: 425px; width: 18px; height: 18px; }
+#ov-server-kr-dim   { left: 430px; top: 418px; width: 225px; height: 31px; background: rgba(215, 237, 251, 0.75); }
+#ov-server-kr-code  { left: 523px; top: 418px; width: 132px; height: 25px; font-size: 18px; font-weight: 700; }
+#ov-server-jp-check { left: 365px; top: 470px; width: 18px; height: 18px; }
+#ov-server-jp-dim   { left: 430px; top: 463px; width: 225px; height: 31px; background: rgba(215, 237, 251, 0.75); }
+#ov-server-jp-code  { left: 523px; top: 463px; width: 132px; height: 25px; font-size: 18px; font-weight: 700; }
+
+/* 서버 코드 디밍은 별도 dim 오버레이로 처리 */
+
+#ov-server-kr-check.checked::after,
+#ov-server-jp-check.checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: -3px;
+  width: 12px; height: 17px;
+  border-right: 4px solid #2a5fad;
+  border-bottom: 4px solid #2a5fad;
+  transform: rotate(40deg);
+}
+
+.ov-checkbox { display: inline-block; width: 18px; height: 18px; }
+.ov-checkbox.checked::after { content: '✓'; font-size: 16px; color: #333; }
+.ov-text { font-size: 15px; color: #333; }
+
+/* Activity checkboxes */
+#ov-activity-0  { left: 125px;  top: 575px; width: 18px; height: 18px; }
+#ov-activity-1  { left: 297px; top: 575px; width: 18px; height: 18px; }
+#ov-activity-2  { left: 480px; top: 575px; width: 18px; height: 18px; }
+#ov-activity-3  { left: 125px;  top: 618px; width: 18px; height: 18px; }
+#ov-activity-4  { left: 297px; top: 618px; width: 18px; height: 18px; }
+#ov-activity-5  { left: 480px; top: 618px; width: 18px; height: 18px; }
+#ov-activity-6  { left: 125px;  top: 661px; width: 18px; height: 18px; }
+#ov-activity-7  { left: 221px; top: 661px; width: 18px; height: 18px; }
+#ov-activity-8  { left: 297px; top: 661px; width: 18px; height: 18px; }
+#ov-activity-9  { left: 393px; top: 661px; width: 18px; height: 18px; }
+#ov-activity-10 { left: 529px; top: 661px; width: 18px; height: 18px; }
+
+[id^="ov-activity-"] { background: transparent; }
+[id^="ov-activity-"].checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: -3px;
+  width: 12px; height: 17px;
+  border-right: 4px solid #2a5fad;
+  border-bottom: 4px solid #2a5fad;
+  transform: rotate(40deg);
+}
+
+/* 하고 싶은 말 */
+#ov-message {
+  left: 100px; top: 770px;
+  width: 535px; height: 213px;
+  font-size: 24px;
+  line-height: 1.5;
+}
+
+/* --- 흔적 토글 --- */
+#ov-trace-rt      { left: 773px;  top: 107px; width: 80px; height: 70px; }
+#ov-trace-heart   { left: 898px;  top: 107px; width: 75px; height: 70px; }
+#ov-trace-mention { left: 1019px; top: 107px; width: 80px; height: 70px; }
+#ov-trace-follow  { left: 1135px; top: 107px; width: 90px; height: 70px; }
+
+.dimmer {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(242, 250, 253, 0.75);
+  position: absolute;
+  top: 0; left: 0;
+}
+.dimmer.active { display: block; }
+
+#ov-trace-method {
+  left: 818px; top: 187px;
+  width: 201px; height: 35px;
+}
+
+/* --- FUB / 스포 / 18+ --- */
+#ov-fub     { left: 1421px; top: 80px;  width: 18px; height: 18px; }
+#ov-spoiler { left: 1421px; top: 118px; width: 18px; height: 18px; }
+#ov-adult   { left: 1421px; top: 156px; width: 18px; height: 18px; }
+
+#ov-fub.checked::after,
+#ov-spoiler.checked::after,
+#ov-adult.checked::after,
+#ov-farewell-unfollow.checked::after,
+#ov-farewell-blockunblock.checked::after,
+#ov-farewell-block.checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: -3px;
+  width: 12px; height: 17px;
+  border-right: 4px solid #2a5fad;
+  border-bottom: 4px solid #2a5fad;
+  transform: rotate(40deg);
+}
+
+/* 이별은 */
+#ov-farewell-unfollow     { left: 1421px; top: 193px; width: 18px; height: 18px; }
+#ov-farewell-blockunblock { left: 1509px; top: 193px; width: 18px; height: 18px; }
+#ov-farewell-block        { left: 1615px; top: 193px; width: 18px; height: 18px; }
+
+/* --- 선호 캐릭터 --- */
+#ov-characters {
+  left: 773px; top: 338px;
+  width: 455px; height: 95px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: flex-start;
+  align-content: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+#ov-characters img {
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 3px;
+}
+
+/* --- 선호 커플링 --- */
+#ov-coupling {
+  left: 1382px; top: 338px;
+  width: 465px; height: 95px;
+  font-size: 24px;
+}
+
+/* --- 선호 학원 --- */
+#ov-schools {
+  left: 727px; top: 547px;
+  width: 1120px; height: 89px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+#ov-schools .school-dimmer {
+  height: 100%;
+  background: rgba(232, 246, 255, 0.75);
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+#ov-schools .school-dimmer.active {
+  background: transparent;
+}
+
+/* --- 선호 동아리 --- */
+#ov-club {
+  left: 773px; top: 735px;
+  width: 1075px; height: 95px;
+  font-size: 24px;
+}
+
+/* --- 접속 시간대 --- */
+#ov-time {
+  left: 718px; top: 940px;
+  width: 345px; height: 60px;
+  font-size: 24px;
+}
+
+/* --- 타 장르 --- */
+#ov-other-genre-check {
+  left: 1263px; top: 905px;
+  width: 18px; height: 18px;
+}
+
+#ov-other-genre-check.checked::after {
+  content: '';
+  position: absolute;
+  left: 3px; top: -3px;
+  width: 12px; height: 17px;
+  border-right: 4px solid #2a5fad;
+  border-bottom: 4px solid #2a5fad;
+  transform: rotate(40deg);
+}
+
+#ov-other-genre {
+  left: 1135px; top: 940px;
+  width: 350px; height: 60px;
+  font-size: 24px;
+}
+
+/* --- 지뢰 --- */
+#ov-mine {
+  left: 1555px; top: 940px;
+  width: 290px; height: 60px;
+  font-size: 24px;
+}
+
+/* Character Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-overlay[hidden] {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  color: #4a7bc5;
+  white-space: nowrap;
+}
+
+.modal-header input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccd5e0;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 8px;
+  align-content: start;
+}
+
+.char-grid-item {
+  text-align: center;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: all 0.15s;
+}
+
+.char-grid-item:hover {
+  background: #f0f4fa;
+}
+
+.char-grid-item.selected {
+  border-color: #4a7bc5;
+  background: #e8f0fc;
+}
+
+.char-grid-item img {
+  width: 70px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #f5f5f5;
+}
+
+.char-grid-item .char-name {
+  font-size: 11px;
+  margin-top: 2px;
+  color: #555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#selected-count {
+  font-size: 14px;
+  color: #666;
+}
+
+.modal-footer .btn-primary {
+  flex: unset;
+  padding: 8px 24px;
+  font-size: 14px;
+}
+
+/* Mobile Preview Toggle */
+.btn-preview-toggle {
+  padding: 10px 20px;
+  background: #4a7bc5;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Noto Sans KR', sans-serif;
+  width: 100%;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column;
+  }
+
+  .mobile-title {
+    display: block;
+    order: 1;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 16px 20px 10px;
+    background: #fff;
+  }
+
+  .desktop-title {
+    display: none;
+  }
+
+  #preview-panel {
+    padding: 10px;
+    order: 2;
+  }
+
+  #form-panel {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
+    border-right: none;
+    border-top: 1px solid #dde3ec;
+    order: 3;
+  }
+
+  #preview-toggle-bar {
+    display: block;
+    padding: 0 0 10px;
+    width: 100%;
+  }
+
+  #preview-panel.collapsed #card-viewport {
+    display: none;
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .modal-body {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  }
+
+  .friend-code {
+    width: 120px !important;
+  }
+}
