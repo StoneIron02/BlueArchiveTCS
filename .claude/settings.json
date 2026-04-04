@@ -1,0 +1,47 @@
+{
+  "env": {},
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "agent",
+            "if": "Edit(css/style.css)",
+            "prompt": "css/style.css가 수정되었습니다. .claude/skills/sync-coords.md의 동기화 규칙을 참고하여 js/export.js와 apply-coords.js를 CSS와 동기화하세요. 좌표, 폰트, 색상, 디머, 체크마크 등 변경된 모든 시각적 속성을 포함합니다.",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(*)",
+      "Edit",
+      "Read",
+      "WebSearch",
+      "WebFetch(domain:bluearchive.nexon.com)",
+      "WebFetch(domain:bluearchive.jp)"
+    ],
+    "ask": [
+      "Bash(curl *)",
+      "Bash(git push *)",
+      "Bash(npm publish *)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(rm -r *)",
+      "Bash(rm -rf *)",
+      "Bash(chmod 777 *)",
+      "Bash(curl * | sh)",
+      "Bash(curl * | bash)",
+      "Bash(wget * | sh)",
+      "Bash(wget * | bash)",
+      "Read(.env)",
+      "Read(./secrets/**)",
+      "Read(~/.ssh/**)"
+    ]
+  }
+}
