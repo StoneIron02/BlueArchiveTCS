@@ -22,5 +22,5 @@ Thumbs.db
 coords.txt
 
 # Image metadata
-CharacterPortrait/*.meta
-SchoolIcon/*.meta
+/01_Character
+/11_SchoolIcon
