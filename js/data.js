@@ -407,8 +407,8 @@ const SCHOOL_DATA = [
   { id: "shanhaijing", name: "산해경", file: "shanhaijing.png", dimW: 91 },
   { id: "redwinter", name: "붉은겨울", file: "redwinter.png", dimW: 104 },
   { id: "valkyrie", name: "발키리", file: "valkyrie.png", dimW: 78 },
-  { id: "arius", name: "아리우스", file: "arius.png", dimW: 87 },
   { id: "srt", name: "SRT", file: "srt.png", dimW: 95 },
+  { id: "arius", name: "아리우스", file: "arius.png", dimW: 87 },
   { id: "highlander", name: "하이랜더", file: "highlander.png", dimW: 92 },
   { id: "wildhunt", name: "와일드헌트", file: "wildhunt.png", dimW: 101 }
 ];
