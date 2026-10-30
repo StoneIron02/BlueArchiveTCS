@@ -131,7 +131,7 @@ const Exporter = (() => {
     if (state.message) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.message, 100, 774, 535, 36, document.getElementById("ov-message").clientHeight - 4);
+      wrapText(ctx, state.message, 100, 774, 535, 36, parseFloat(getComputedStyle(document.getElementById("ov-message")).height) - 4);
     }
 
     // 10. Traces
@@ -212,7 +212,7 @@ const Exporter = (() => {
     if (state.coupling) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.coupling, 1382, 342, 465, 34, document.getElementById("ov-coupling").clientHeight - 4);
+      wrapText(ctx, state.coupling, 1382, 342, 465, 34, parseFloat(getComputedStyle(document.getElementById("ov-coupling")).height) - 4);
     }
 
     // 16. Schools - dim unselected (개별 너비 적용)
@@ -229,14 +229,14 @@ const Exporter = (() => {
     if (state.club) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.club, 773, 739, 1075, 34, document.getElementById("ov-club").clientHeight - 4);
+      wrapText(ctx, state.club, 773, 739, 1075, 34, parseFloat(getComputedStyle(document.getElementById("ov-club")).height) - 4);
     }
 
     // 18. Time
     if (state.time) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.time, 718, 944, 345, 34, document.getElementById("ov-time").clientHeight - 4);
+      wrapText(ctx, state.time, 718, 944, 345, 34, parseFloat(getComputedStyle(document.getElementById("ov-time")).height) - 4);
     }
 
     // 19. Other genre
@@ -244,14 +244,14 @@ const Exporter = (() => {
     if (state.otherGenre) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.otherGenre, 1135, 944, 350, 34, document.getElementById("ov-other-genre").clientHeight - 4);
+      wrapText(ctx, state.otherGenre, 1135, 944, 350, 34, parseFloat(getComputedStyle(document.getElementById("ov-other-genre")).height) - 4);
     }
 
     // 20. Mine
     if (state.mine) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.mine, 1555, 944, 290, 34, document.getElementById("ov-mine").clientHeight - 4);
+      wrapText(ctx, state.mine, 1555, 944, 290, 34, parseFloat(getComputedStyle(document.getElementById("ov-mine")).height) - 4);
     }
 
     // Download
