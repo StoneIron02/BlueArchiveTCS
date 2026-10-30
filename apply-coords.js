@@ -228,8 +228,8 @@ const exportMap = {
   },
 
   'ov-characters': (c) => {
-    ejs = ejs.replace(/const charX = \d+/, `const charX = ${c.left + 4}`);
-    ejs = ejs.replace(/const charY = \d+/, `const charY = ${c.top + 4}`);
+    ejs = ejs.replace(/const charBaseX = \d+/, `const charBaseX = ${c.left}`);
+    ejs = ejs.replace(/charBaseY = \d+/, `charBaseY = ${c.top}`);
   },
 
   'ov-coupling': (c) => {
@@ -303,7 +303,10 @@ for (const [parentId, opts] of Object.entries(dimmerCoords)) {
   for (const [optName, c] of Object.entries(opts)) {
     // { name: '옵션', left: N, width: N } 형식 매칭
     const dwRe = new RegExp(`name:\\s*'${optName}',\\s*left:\\s*\\d+,\\s*width:\\s*\\d+`);
-    ejs = ejs.replace(dwRe, `name: '${optName}', left: ${c.left}, width: ${c.width}`);
+    const field = { 'ov-age': 'age', 'ov-gender': 'gender', 'ov-trace-method': 'traceMethod' }[parentId];
+    if (!field) continue;
+    const blockRe = new RegExp('drawDimmedOptionsCSS\\(ctx, \\[([^\\]]*?)\\], state\\.' + field + ',');
+    ejs = ejs.replace(blockRe, block => block.replace(dwRe, `name: '${optName}', left: ${c.left}, width: ${c.width}`));
   }
 }
 
