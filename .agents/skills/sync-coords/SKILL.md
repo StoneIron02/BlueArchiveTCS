@@ -1,6 +1,6 @@
 ---
+name: sync-coords
 description: style.css 변경사항을 export.js와 apply-coords.js에 동기화합니다. 좌표, 색상, 폰트, 디밍 로직 등 모든 시각적 변경을 포함합니다.
-user-invocable: true
 ---
 
 # CSS → export.js / apply-coords.js 동기화
@@ -27,20 +27,20 @@ css/style.css가 변경되었을 때, js/export.js의 Canvas 렌더링과 apply-
 |--------|---------------|
 | `ov-profile-photo` | `const px, py, pw, ph` |
 | `ov-name` | `const nameX, nameY, nameW, nameH` |
-| `ov-age` | `drawDimmedOptions(ctx, ['성인'...], state.age, x, y, w, h, color)` |
-| `ov-gender` | `drawDimmedOptions(ctx, ['남성'...], state.gender, x, y, w, h, color)` |
+| `ov-age` | `drawDimmedOptionsCSS(ctx, ['성인'...], state.age, x, y, w, h, color)` |
+| `ov-gender` | `drawDimmedOptionsCSS(ctx, ['남성'...], state.gender, x, y, w, h, color)` |
 | `ov-server-*-check` | `drawCheckMark(ctx, state.serverKR/JP, x, y)` |
 | `ov-server-*-dim` | `ctx.fillRect(x, y, w, h)` (서버 코드 디밍) |
 | `ov-server-*-code` | `ctx.fillText(state.krCode/jpCode, x, y)` + `ctx.font` |
 | `ov-activity-N` | `activityPositions` 배열의 N번째 `[x, y]` |
 | `ov-message` | `wrapText(ctx, state.message, x, y+4, w, lineH)` + `ctx.font` |
 | `ov-trace-rt/heart/mention/follow` | `tracePositions` 객체의 `[x, y, w, h]` + dimmer `ctx.fillStyle` |
-| `ov-trace-method` | `drawDimmedOptions(ctx, ['조건 없이'...], ..., x, y, w, h)` |
+| `ov-trace-method` | `drawDimmedOptionsCSS(ctx, ['조건 없이'...], ..., x, y, w, h)` |
 | `ov-fub/spoiler/adult` | `drawCheckMark(ctx, state.fub/spoiler/adult, x, y)` |
 | `ov-farewell-*` | `drawCheckMark(ctx, state.farewells.includes('...'), x, y)` |
-| `ov-characters` | `const charX = left+4, charY = top+4` |
+| `ov-characters` | `const charBaseX = left, charBaseY = top` |
 | `ov-coupling` | `wrapText(ctx, state.coupling, x, y+4, w, ...)` |
-| `ov-schools` | `schoolStartX`, `schoolLogoW = width / 12`, `fillRect(..., top, ..., height)` + dimmer color |
+| `ov-schools` | `schoolX`, `school.dimW`, `fillRect(schoolX, top, school.dimW, height)` + dimmer color |
 | `ov-club` | `wrapText(ctx, state.club, x, y+4, w, ...)` |
 | `ov-time` | `wrapText(ctx, state.time, x, y+4, w, ...)` |
 | `ov-other-genre-check` | `drawCheckMark(ctx, state.otherGenreCheck, x, y)` |
