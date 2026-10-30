@@ -3,6 +3,19 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - 'index.html'
+      - 'css/**'
+      - 'js/**'
+      - 'CharacterPortrait/**'
+      - 'SchoolIcon/**'
+      - 'fonts/**'
+      - 'template.png'
+      - 'logo.png'
+      - 'favicon.png'
+      - 'favicon.ico'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,10 +39,17 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare site files
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/pages-site"
+          cp index.html template.png logo.png favicon.png favicon.ico "$RUNNER_TEMP/pages-site/"
+          cp -R css js CharacterPortrait SchoolIcon fonts "$RUNNER_TEMP/pages-site/"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ${{ runner.temp }}/pages-site
 
       - name: Deploy to GitHub Pages
         id: deployment
