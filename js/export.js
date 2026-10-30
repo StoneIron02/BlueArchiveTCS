@@ -131,7 +131,7 @@ const Exporter = (() => {
     if (state.message) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.message, 100, 774, 535, 36);
+      wrapText(ctx, state.message, 100, 774, 535, 36, document.getElementById("ov-message").clientHeight - 4);
     }
 
     // 10. Traces
@@ -212,7 +212,7 @@ const Exporter = (() => {
     if (state.coupling) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.coupling, 1382, 342, 465, 34);
+      wrapText(ctx, state.coupling, 1382, 342, 465, 34, document.getElementById("ov-coupling").clientHeight - 4);
     }
 
     // 16. Schools - dim unselected (개별 너비 적용)
@@ -229,14 +229,14 @@ const Exporter = (() => {
     if (state.club) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.club, 773, 739, 1075, 34);
+      wrapText(ctx, state.club, 773, 739, 1075, 34, document.getElementById("ov-club").clientHeight - 4);
     }
 
     // 18. Time
     if (state.time) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.time, 718, 944, 345, 34);
+      wrapText(ctx, state.time, 718, 944, 345, 34, document.getElementById("ov-time").clientHeight - 4);
     }
 
     // 19. Other genre
@@ -244,14 +244,14 @@ const Exporter = (() => {
     if (state.otherGenre) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.otherGenre, 1135, 944, 350, 34);
+      wrapText(ctx, state.otherGenre, 1135, 944, 350, 34, document.getElementById("ov-other-genre").clientHeight - 4);
     }
 
     // 20. Mine
     if (state.mine) {
       ctx.font = '24px "GyeonggiTitle", "Noto Sans KR", sans-serif';
       ctx.fillStyle = '#2587ff';
-      wrapText(ctx, state.mine, 1555, 944, 290, 34);
+      wrapText(ctx, state.mine, 1555, 944, 290, 34, document.getElementById("ov-mine").clientHeight - 4);
     }
 
     // Download
@@ -317,7 +317,11 @@ const Exporter = (() => {
     ctx.restore();
   }
 
-  function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight, maxHeight) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x, y, maxWidth, maxHeight);
+    ctx.clip();
     const lines = text.split('\n');
     let curY = y;
 
@@ -344,6 +348,7 @@ const Exporter = (() => {
         curY += lineHeight;
       }
     }
+    ctx.restore();
   }
 
   // Preload on init
