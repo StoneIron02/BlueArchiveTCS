@@ -23,7 +23,7 @@ const Exporter = (() => {
   }
 
   async function exportPNG(state) {
-    if (!templateImg) await preloadTemplate();
+    await Promise.all([templateReady, fontsReady]);
 
     const canvas = document.createElement('canvas');
     canvas.width = CARD_W;
@@ -352,7 +352,8 @@ const Exporter = (() => {
   }
 
   // Preload on init
-  preloadTemplate();
+  const templateReady = preloadTemplate();
+  templateReady.catch(() => {});
 
   // 커스텀 폰트 프리로드
   async function ensureFonts() {
@@ -367,7 +368,7 @@ const Exporter = (() => {
       await document.fonts.ready;
     }
   }
-  ensureFonts();
+  const fontsReady = ensureFonts();
 
   return { exportPNG };
 })();
